@@ -125,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[args[0]]()
         if len(args) > 1:
             elem_dict = {}
-            for elements in args[1:]:
+            for elements in range(1, len(args)):
                 key_value = elements.split("=")
                 key = key_value[0]
                 value = key_value[2]
