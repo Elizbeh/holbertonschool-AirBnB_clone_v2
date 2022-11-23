@@ -128,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
             for elements in args[1:]:
                 key_value = elements.split("=")
                 key = key_value[0]
-                value = key_value[2]
+                value = key_value[1]
                 if '\"' in value:
                     value = value[1:-1]
                     value = value.replace("_", " ")
