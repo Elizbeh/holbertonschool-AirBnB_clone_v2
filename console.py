@@ -124,21 +124,21 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         new_instance = HBNBCommand.classes[arg[0]]()
-        if len(arg) > 1:
-            elem_dict = {}
-            for elements in arg[1:]:
-                key_value = elements.split("=")
-                key = key_value[0]
-                value = key_value[1]
-                if '\"' in value:
-                    value = value[1:-1]
-                    value = value.replace("_", " ")
-                elif '.' in value:
-                    value = float(value)
+        for i in range(1, len(arg)):
+            first = arg[i].split("=")
+            try:
+                if first[1][0] == "\"":
+                    first[1] = first[1].replace("\"", "")
+                    first[1] = first[1].replace("_", " ")
+
+                elif "." in first[1]:
+                    first[1] = float(first[1])
+
                 else:
-                    value = int(value)
-            for key, value in elem_dict.items():
-                setattr(new_instance, key, value)
+                    first[1] = int(first[1])
+                    setattr(new_instance, first[0], first[1])
+            except Exception:
+                continue
         new_instance.save()
         print(new_instance.id)
 
