@@ -2,9 +2,6 @@
 """ Console Module """
 import cmd
 import sys
-import re
-import os
-import uuid
 from models import storage
 from datetime import datetime
 from models.base_model import BaseModel
@@ -120,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ Create an object of any class"""
         arg = args.split(" ")
-        if not args:
+        if not arg:
             print("** class name missing **")
             return
         elif arg[0] not in HBNBCommand.classes:
@@ -143,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in elem_dict.items():
                 setattr(new_instance, key, value)
         print(new_instance.id)
-        new_instance.save()
+        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
