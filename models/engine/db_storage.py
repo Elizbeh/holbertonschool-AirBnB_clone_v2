@@ -1,26 +1,19 @@
-# a class to manage database storage"""
+# import getenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session
 from os import getenv
-from models.base_model import Base
-from models.user import User
-from models.place import Place
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
+from models.basemodel import base
 
 
-mapped_classes = (City, State, User, Place, Amenity, Review)
+class DBStorage():
+    """the DBStorage class"""
 
-
-class DBStorage:
-    """Class for database storage"""
     __engine = None
     __session = None
 
     def __init__(self):
-        """initializes the storage"""
+        """initiate a dbstorage"""
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(
             getenv("HBNB_MYSQL_USER"),
             getenv("HBNB_MYSQL_PWD"),
@@ -85,6 +78,6 @@ class DBStorage:
         Session = scoped_session(session_factory)
         self.__session = Session()
 
-        def close(self):
-            """remove method: remove the session"""
-            self.__session.close()
+    def close(self):
+        """remove method: remove the session"""
+        self.__session.close()
