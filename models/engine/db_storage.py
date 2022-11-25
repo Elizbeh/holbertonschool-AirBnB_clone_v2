@@ -1,9 +1,10 @@
-# import getenv
+#!/usr/bin/python3
+"""class file DBStorage"""
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 from os import getenv
-from models.basemodel import base
 
 
 class DBStorage():
