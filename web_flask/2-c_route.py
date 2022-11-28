@@ -4,6 +4,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route("/", strict_slashes=False)
 def hello_world():
     '''methods displays'''
@@ -14,6 +15,7 @@ def hello_world():
 def hbnb():
     '''methods display'''
     return "HBNB"
+
 
 @app.route("/c/<text>", strict_slashes=False)
 def cisfun(text):
